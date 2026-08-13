@@ -155,6 +155,11 @@
     display:inline-block;
   }
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px -6px rgba(255,38,112,0.7);}
+  .btn-primary-lg{
+    font-size:18px;padding:22px 52px;
+    box-shadow:0 16px 38px -8px rgba(255,38,112,0.6);
+  }
+  .btn-primary-lg:hover{box-shadow:0 20px 44px -6px rgba(255,38,112,0.75);}
   .btn-ghost{
     font-family:var(--mono);font-size:13px;color:var(--text-muted);
     border-bottom:1px solid var(--line);padding-bottom:2px;
@@ -168,6 +173,62 @@
 
   /* ---------- section shell ---------- */
   section{position:relative;z-index:1;padding:64px 0;}
+
+  /* faq */
+  .faq-groups{display:grid;gap:38px;}
+  .faq-cat-title{
+    font-family:var(--mono);font-size:13px;letter-spacing:.06em;font-weight:700;
+    color:var(--pink-soft);margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .faq-cat-title::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px rgba(255,38,112,0.2);}
+  .faq-list{display:grid;gap:10px;}
+  .faq-item{
+    background:var(--navy-card-2);border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;
+  }
+  .faq-item summary{
+    list-style:none;cursor:pointer;padding:17px 44px 17px 20px;position:relative;
+    font-size:15px;font-weight:700;color:var(--text);line-height:1.5;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::before{content:"Q";font-family:var(--mono);color:var(--gold-soft);margin-right:10px;}
+  .faq-item summary::after{
+    content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);
+    color:var(--pink-soft);font-size:20px;font-weight:400;transition:transform .25s ease;
+  }
+  .faq-item[open] summary::after{transform:translateY(-50%) rotate(45deg);}
+  .faq-item .faq-answer{
+    padding:0 20px 20px 20px;font-size:14px;line-height:1.85;color:var(--text-muted);
+  }
+  .faq-contact{
+    margin-top:40px;font-size:13.5px;color:var(--text-muted);line-height:1.9;
+    border-top:1px solid var(--line);padding-top:24px;
+  }
+  .contact-form{
+    margin-top:44px;background:var(--navy-card-2);border:1px solid var(--line);
+    border-radius:20px;padding:36px;
+  }
+  .contact-form-title{font-size:20px;color:var(--text);margin-bottom:8px;}
+  .contact-form-note{font-size:13.5px;color:var(--text-muted);margin-bottom:26px;line-height:1.8;}
+  .cf-row{margin-bottom:20px;}
+  .cf-row label{
+    display:block;font-family:var(--mono);font-size:12.5px;font-weight:700;
+    color:var(--gold-soft);margin-bottom:8px;letter-spacing:.02em;
+  }
+  .cf-row .req{
+    font-family:var(--sans, inherit);font-size:11px;font-weight:700;color:var(--pink);
+    background:rgba(255,38,112,0.12);border-radius:6px;padding:2px 7px;margin-left:8px;
+  }
+  .cf-row input,.cf-row textarea{
+    width:100%;box-sizing:border-box;background:rgba(246,244,255,0.04);
+    border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+    color:var(--text);font-size:14.5px;font-family:inherit;
+  }
+  .cf-row input::placeholder,.cf-row textarea::placeholder{color:rgba(246,244,255,0.32);}
+  .cf-row input:focus,.cf-row textarea:focus{outline:none;border-color:var(--pink-soft);}
+  .cf-row textarea{resize:vertical;min-height:120px;}
+  .contact-form button[type="submit"]{border:none;cursor:pointer;font-family:inherit;}
   .section-head{margin-bottom:44px;max-width:640px;}
   .kicker{
     font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--pink-soft);
@@ -181,6 +242,34 @@
   .reveal.in{opacity:1;transform:translateY(0);}
   @media (prefers-reduced-motion: reduce){
     .reveal.pending{opacity:1;transform:none;}
+  }
+
+  /* table of contents */
+  .toc{
+    background:var(--navy-card-2);border:1px solid var(--line);border-radius:20px;
+    padding:28px 30px;margin-bottom:32px;
+  }
+  .toc-title{
+    font-family:var(--mono);font-size:12px;letter-spacing:.14em;font-weight:700;
+    color:var(--pink-soft);display:block;margin-bottom:16px;
+  }
+  .toc-list{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(3, 1fr);gap:6px 24px;
+  }
+  .toc-list a{
+    display:flex;align-items:baseline;gap:10px;
+    font-size:14px;color:var(--text-muted);
+    padding:9px 0;border-bottom:1px solid rgba(246,244,255,0.06);
+    transition:color .2s ease;
+  }
+  .toc-list a:hover{color:var(--text);}
+  .toc-num{
+    font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--gold-soft);
+    flex-shrink:0;
+  }
+  @media (max-width:760px){
+    .toc-list{grid-template-columns:1fr;}
   }
 
   /* video banner */
@@ -204,13 +293,13 @@
     z-index:2;
   }
   .video-banner:hover .video-play{transform:translate(-50%,-50%) scale(1.08);}
-  .video-caption{
-    position:absolute;left:24px;bottom:20px;z-index:2;
-    font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.04em;
-    color:var(--text);
+  .video-caption-top{
+    font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.04em;
+    color:var(--pink-soft);
     display:flex;align-items:center;gap:8px;
+    margin-bottom:16px;
   }
-  .video-caption::before{content:"▶";color:var(--pink);font-size:11px;}
+  .video-caption-top::before{content:"▶";color:var(--pink);font-size:11px;}
 
   /* overview */
   .overview-outer{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start;}
@@ -414,6 +503,9 @@
   .tl-day-alt{background:transparent;border:1.5px dashed var(--pink-soft);color:var(--pink-soft);}
   .tl-time{font-family:var(--mono);font-size:13px;color:var(--gold-soft);margin-bottom:6px;}
   .tl-item p{font-size:15px;}
+  .tl-sublist{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+  .tl-sublist li{display:flex;gap:14px;align-items:baseline;font-size:15px;color:var(--text);}
+  .tl-sub-time{font-family:var(--mono);font-size:13px;color:var(--gold-soft);flex-shrink:0;min-width:62px;}
   .tl-note{
     background:rgba(255,38,112,0.06);border-left:2px solid var(--pink);
     padding:16px 20px;border-radius:0 12px 12px 0;font-size:13.5px;color:var(--text-muted);
@@ -544,12 +636,27 @@
 <main class="wrap">
 
   <section id="video" class="video-section reveal">
+    <p class="video-caption-top">この動画を見れば、このイベントの真価がわかります</p>
     <a class="video-banner" href="https://youtu.be/wa97ve78fII?si=bMsVsRS5RMOf3Wrg" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/wa97ve78fII/maxresdefault.jpg" alt="生成AI開発実装ブートキャンプ in 吉野 紹介動画">
       <span class="video-play"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7c-.8-2.9-2.5-4.6-5.4-5.4C55.8 1 34 1 34 1s-21.8 0-27.1 1.3c-2.9.8-4.6 2.5-5.4 5.4C0 13 0 24 0 24s0 11 1.5 16.3c.8 2.9 2.5 4.6 5.4 5.4C12.2 47 34 47 34 47s21.8 0 27.1-1.3c2.9-.8 4.6-2.5 5.4-5.4C68 35 68 24 68 24s0-11-1.5-16.3z" fill="var(--pink)"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
-      <span class="video-caption">紹介動画を見る</span>
     </a>
   </section>
+
+  <nav class="toc reveal" aria-label="目次">
+    <span class="toc-title">CONTENTS</span>
+    <ul class="toc-list">
+      <li><a href="#overview"><span class="toc-num">01</span>イベント概要</a></li>
+      <li><a href="#details"><span class="toc-num">02</span>開催概要</a></li>
+      <li><a href="#requirements"><span class="toc-num">03</span>応募条件・求める人物像</a></li>
+      <li><a href="#mentor"><span class="toc-num">04</span>メンター紹介</a></li>
+      <li><a href="#benefits"><span class="toc-num">05</span>参加者が得られるメリット</a></li>
+      <li><a href="#awards"><span class="toc-num">06</span>賞</a></li>
+      <li><a href="#schedule"><span class="toc-num">07</span>タイムスケジュール</a></li>
+      <li><a href="#apply"><span class="toc-num">08</span>お申し込み方法</a></li>
+      <li><a href="#faq"><span class="toc-num">09</span>よくある質問</a></li>
+    </ul>
+  </nav>
 
   <section id="overview">
     <div class="section-head reveal">
@@ -742,8 +849,11 @@
     <div class="timeline reveal">
       <div class="tl-item">
         <span class="tl-day">DAY 1</span>
-        <div class="tl-time">10:00〜</div>
-        <p>オープニング／チームビルディング／地域課題ヒアリング／開発（メンターが伴走）</p>
+        <ul class="tl-sublist">
+          <li><span class="tl-sub-time">10:00〜</span><span>開会・趣旨説明</span></li>
+          <li><span class="tl-sub-time">10:30〜</span><span>奈良県・吉野町・協賛企業セッション（決起集会）</span></li>
+          <li><span class="tl-sub-time">11:10〜</span><span>専門家と開発開始（課題整理・方向性決定・メンター支援・夜間集中開発）</span></li>
+        </ul>
       </div>
       <div class="tl-item tl-item-span">
         <span class="tl-day tl-day-alt">開発時間</span>
@@ -751,8 +861,13 @@
       </div>
       <div class="tl-item">
         <span class="tl-day">DAY 2</span>
-        <div class="tl-time">16:20〜19:00</div>
-        <p>最終発表・審査・表彰・講評</p>
+        <ul class="tl-sublist">
+          <li><span class="tl-sub-time">13:30〜</span><span>プロトタイプブラッシュアップ</span></li>
+          <li><span class="tl-sub-time">16:20〜</span><span>最終発表（各チーム発表10分＋質疑10分）</span></li>
+          <li><span class="tl-sub-time">18:00〜</span><span>審査会・表彰・講評</span></li>
+          <li><span class="tl-sub-time">18:30〜</span><span>クロージング・事後伴走案内</span></li>
+          <li><span class="tl-sub-time">19:00</span><span>終了予定（多少前後する場合があります）</span></li>
+        </ul>
       </div>
     </div>
     <p class="logistics reveal"><b>交通・宿泊について：</b>交通・宿泊に関して、ご自身での手配・ご負担となります。</p>
@@ -774,16 +889,11 @@
     <div class="apply-card reveal">
       <div>
         <p class="apply-lede">
-          本イベントは、2日間で生成AIを活用したシステム開発に本気で挑むプログラムです。そのため、応募フォームにて以下項目をご入力いただき、選考を行います。
+          本イベントは、2日間で生成AIを活用したシステム開発に本気で挑むプログラムです。応募フォームに入力された内容を元に、厳正な選考を行います。
         </p>
-        <ul>
-          <li>これまでの開発実績やスキル（エンジニア歴、もしくは社会課題解決の実績など）</li>
-          <li>本イベントへの参加動機と熱意</li>
-          <li>本イベントで身につけた生成AIスキルを、今後どう活かしたいか</li>
-        </ul>
         <div class="deadline-strip">応募締切：2026年9月7日（月）　定員10名・選考制</div>
         <div style="margin-top:26px;">
-          <a class="btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe9yXf4ijHsUFJwYis6i_7FJE4-SXDZWbDHnT73TASk5URVMg/viewform" target="_blank" rel="noopener">応募フォームへ進む</a>
+          <a class="btn-primary btn-primary-lg" href="https://docs.google.com/forms/d/e/1FAIpQLSe9yXf4ijHsUFJwYis6i_7FJE4-SXDZWbDHnT73TASk5URVMg/viewform" target="_blank" rel="noopener">応募フォームへ進む</a>
         </div>
       </div>
 
@@ -824,6 +934,197 @@
     </div>
   </div>
 </section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">FAQ</span>
+      <h2>よくある質問</h2>
+    </div>
+
+    <div class="faq-groups reveal">
+
+      <div class="faq-cat">
+        <h3 class="faq-cat-title">参加資格・対象者について</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>どんな人が対象ですか？</summary>
+            <div class="faq-answer">社会課題を本気で解決したいという強い意志を持ち、最後まで自発的に取り組む覚悟のある方を求めています。エンジニア・AI開発経験者を歓迎しますが、開発未経験であっても、強い意志と自発性があれば応募可能です。対象年齢は18歳以上です。</div>
+          </details>
+          <details class="faq-item">
+            <summary>初心者でも参加できますか？</summary>
+            <div class="faq-answer">ある程度のプログラミング・AI開発の知識があることが望ましいですが、意欲によっては経験がない方でも取り組めます。スキルよりも「社会課題を解決したい」という意欲と情熱を最重視しています。なお、ノートパソコンの持参が必須です。</div>
+          </details>
+          <details class="faq-item">
+            <summary>チームでの参加は可能ですか？</summary>
+            <div class="faq-answer">基本的に個人でのご応募をお願いしています。チーム編成は当日の課題テーマや参加者のスキルバランスを考慮して事務局が行います。</div>
+          </details>
+          <details class="faq-item">
+            <summary>社会人でないと参加できませんか？</summary>
+            <div class="faq-answer">社会人に限りません。大学生・大学院生など、18歳以上であれば学生の方も応募可能です。</div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faq-cat">
+        <h3 class="faq-cat-title">テーマ・開発内容について</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>テーマは自由に決められますか？</summary>
+            <div class="faq-answer">事務局が用意した推奨テーマの中から、応募フォームで関心のある社会課題を最大3つ選択いただきます。参加者決定後、事務局と協議の上テーマを確定します。テーマの重複を避けるため、希望どおりにならない場合もございます。</div>
+          </details>
+          <details class="faq-item">
+            <summary>どんなテーマがありますか？</summary>
+            <div class="faq-answer">①一次産業活性化（農業） ②一次産業活性化（林業） ③地域の移動手段の確保 ④害虫からの桜の保全 ⑤木材産業の活性化 ⑥移住・創業の促進 ⑦空き家の活用 ⑧過疎地域での教育支援 ⑨その他　を現時点で検討しています。</div>
+          </details>
+          <details class="faq-item">
+            <summary>専門家とはどのような関わり方をしますか？</summary>
+            <div class="faq-answer">選択したテーマに対応する地域の専門家・事業者が当日チームに加わります。課題の深掘りや現場の実態をヒアリングしながら、開発者と専門家が一体となって開発を進めます。この専門家との連携が本イベントの大きな特徴です。</div>
+          </details>
+          <details class="faq-item">
+            <summary>1泊2日でどこまで作れますか？</summary>
+            <div class="faq-answer">チャット機能の実装までを目標としていただきます。2日間でここまで完成させるためには、かなり本気で取り組む必要がありますが、それだけに完成したときの達成感と実績としての価値は非常に大きいものになります。</div>
+          </details>
+          <details class="faq-item">
+            <summary>どんな技術・ツールを使えますか？</summary>
+            <div class="faq-answer">メンターから実装キットが提供され、そのキットを使って開発を行います。利用条件は「利用許諾条件」をご確認ください。</div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faq-cat">
+        <h3 class="faq-cat-title">権利・実績について</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>メンターから提供される実装キットの利用条件は？</summary>
+            <div class="faq-answer">参加者が改変し、作成したアプリを無償または有償で提供可能です。ただし本キットおよびその実質的な内容の不特定多数への公開・配布は禁止です。顧客への提供は可能ですが、同等の非公開義務を課してください。本キットの権利は提供者（山本高史氏）に帰属し、参加者が独自に追加した部分は原則として参加者に帰属します。</div>
+          </details>
+          <details class="faq-item">
+            <summary>開発したアプリケーションの権利は誰に帰属しますか？</summary>
+            <div class="faq-answer">参加者が独自に追加・開発した部分の知的財産権は、原則として開発者（参加者）に帰属します。ただし課題を提供した地域事業者・行政等は当該アプリケーションを地域課題解決のために使用する権利を有します。商業利用等は別途開発者との協議・合意のもとで進めます。</div>
+          </details>
+          <details class="faq-item">
+            <summary>参加したことは実績として使えますか？</summary>
+            <div class="faq-answer">はい。本イベントは吉野町主催（奈良県後援）の公式イベントです。制作物・発表内容・受賞歴は、今後のキャリアや仕事受注に直結する実績・ポートフォリオとして活用いただけます。</div>
+          </details>
+          <details class="faq-item">
+            <summary>受賞するとどんな特典がありますか？</summary>
+            <div class="faq-answer">受賞の有無にかかわらず、企業等とのマッチング機会の提供を予定しています。</div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faq-cat">
+        <h3 class="faq-cat-title">当日の流れについて</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>当日のスケジュールを教えてください。</summary>
+            <div class="faq-answer">
+              【DAY1：10月24日(土)】10:00〜 開会・趣旨説明／10:30〜 奈良県・吉野町・協賛企業セッション（決起集会）／11:10〜 専門家と開発開始（課題整理・方向性決定・メンター支援・夜間集中開発）<br>
+              【DAY2：10月25日(日)】〜13:30 プロトタイプブラッシュアップ／16:20〜 最終発表（各チーム発表10分＋質疑10分）／18:00〜 審査会・表彰・講評／18:30〜 クロージング・事後伴走案内
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>夜間も開発できますか？</summary>
+            <div class="faq-answer">はい。会場は24時間利用可能です。</div>
+          </details>
+          <details class="faq-item">
+            <summary>食事・宿泊はどうなりますか？</summary>
+            <div class="faq-answer">食事・宿泊の確保は各自でお願いします。宿泊については、事務局から宿泊先を紹介することができますので、お気軽にご相談ください。会場内に仮眠スペースもございます。</div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faq-cat">
+        <h3 class="faq-cat-title">応募・選考について</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>どうやって応募できますか？</summary>
+            <div class="faq-answer">吉野町公式ページ、チラシのQRコードから応募フォームにアクセスし、お申し込みください。応募締切は2026年9月7日（月）18:00です。</div>
+          </details>
+          <details class="faq-item">
+            <summary>選考はどのように行われますか？</summary>
+            <div class="faq-answer">応募フォームの記載内容をもとに、意欲・スキル・課題解決への想いを事務局で総合的に審査します。選考結果は9月14日（月）18:00までに登録メールアドレスへご連絡します。</div>
+          </details>
+          <details class="faq-item">
+            <summary>選考基準を教えてください。</summary>
+            <div class="faq-answer">スキルの高さよりも、社会課題解決に対する意欲・情熱・自発性を最重視します。また、意気込みの設問で「はい、あります。」を選択していること、利用許諾条件および個人情報の取り扱いに同意していることが参加の前提条件となります。</div>
+          </details>
+          <details class="faq-item">
+            <summary>応募後にキャンセルはできますか？</summary>
+            <div class="faq-answer">やむを得ない事情によるキャンセルは可能ですが、できる限り早めにご連絡ください。定員が限られているため、他の応募者への影響を最小限にするためにもご連絡をお願いしています。</div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faq-cat">
+        <h3 class="faq-cat-title">イベント後について</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>イベント後もサポートはありますか？</summary>
+            <div class="faq-answer">イベント終了後、市町村や企業へのプレゼンテーション機会・マッチング機会を設ける予定です。日程については追ってご連絡いたします。</div>
+          </details>
+          <details class="faq-item">
+            <summary>イベントで作ったものを実際に地域で使ってもらえる可能性はありますか？</summary>
+            <div class="faq-answer">はい。実際に地域課題の解決につながる案件については、吉野町・奈良県と連携しながら実証実験・導入を検討します。イベントで終わらせず、実際のビジネス・社会実装へつなげることが本イベントの目標です。</div>
+          </details>
+          <details class="faq-item">
+            <summary>第2回以降の開催予定はありますか？</summary>
+            <div class="faq-answer">現時点では未定です。</div>
+          </details>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="faq-contact reveal">上記以外のご質問は、事務局までお問い合わせください。<br>吉野町 町長公室　TEL：0746-32-3081　MAIL：koushitsu@town.yoshino.lg.jp</p>
+
+    <div class="contact-form reveal">
+      <h3 class="contact-form-title">お問い合わせフォーム</h3>
+      <p class="contact-form-note">以下にご入力の上、送信ボタンを押すとお使いのメールソフトが起動します。内容をご確認の上、そのまま送信してください。</p>
+      <form id="contactForm" onsubmit="return sendContactForm(event)">
+        <div class="cf-row">
+          <label for="cfName">お名前<span class="req">必須</span></label>
+          <input type="text" id="cfName" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="cf-row">
+          <label for="cfEmail">メールアドレス<span class="req">必須</span></label>
+          <input type="email" id="cfEmail" name="email" required placeholder="example@mail.com">
+        </div>
+        <div class="cf-row">
+          <label for="cfSubject">件名</label>
+          <input type="text" id="cfSubject" name="subject" placeholder="お問い合わせ件名">
+        </div>
+        <div class="cf-row">
+          <label for="cfMessage">お問い合わせ内容<span class="req">必須</span></label>
+          <textarea id="cfMessage" name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+        </div>
+        <button type="submit" class="btn-primary">送信する</button>
+      </form>
+    </div>
+
+    <script>
+      function sendContactForm(e){
+        e.preventDefault();
+        const name = document.getElementById('cfName').value;
+        const email = document.getElementById('cfEmail').value;
+        const subjectInput = document.getElementById('cfSubject').value;
+        const message = document.getElementById('cfMessage').value;
+        const subject = subjectInput ? subjectInput : '【吉野AIブートキャンプ】お問い合わせ';
+        const body =
+          'お名前：' + name + '\n' +
+          'メールアドレス：' + email + '\n\n' +
+          'お問い合わせ内容：\n' + message;
+        const mailto = 'mailto:koushitsu@town.yoshino.lg.jp'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(body);
+        window.location.href = mailto;
+        return false;
+      }
+    </script>
+  </div>
+</section>
+
 
 <footer>
   主催：吉野町町制70周年記念「生成AI開発実装ブートキャンプ」実行委員会　／　後援：奈良県
